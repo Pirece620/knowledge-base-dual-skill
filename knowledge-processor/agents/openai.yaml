@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识加工"
+  short_description: "按阶段将资料转换为Markdown、拆解完整知识并整理成可直接使用的正文与模板"
+  default_prompt: "使用 $knowledge-processor 将这些资料按指定阶段转换、拆解或整理，保留完整方法、案例、模板和图片。"

@@ -1,0 +1,108 @@
+{
+  "schema": "knowledge-capabilities.v1",
+  "core": [
+    {
+      "id": "preflight",
+      "owner": "knowledge-orchestrator",
+      "worker_skill": null,
+      "inputs": [
+        "scope",
+        "source_manifest"
+      ],
+      "outputs": [
+        "reuse_or_pending"
+      ],
+      "write_scope": "task_metadata"
+    },
+    {
+      "id": "convert",
+      "owner": "knowledge-processor",
+      "worker_skill": "knowledge-processor",
+      "reference": "01_文件转换为Markdown.md",
+      "inputs": [
+        "source_manifest"
+      ],
+      "outputs": [
+        "readable_material",
+        "resource_map",
+        "gaps"
+      ],
+      "write_scope": "work"
+    },
+    {
+      "id": "extract",
+      "owner": "knowledge-processor",
+      "worker_skill": "knowledge-processor",
+      "reference": "02_知识拆解与提取.md",
+      "inputs": [
+        "readable_material",
+        "resource_map"
+      ],
+      "outputs": [
+        "topics",
+        "complete_material",
+        "coverage"
+      ],
+      "write_scope": "work"
+    },
+    {
+      "id": "classify",
+      "owner": "knowledge-orchestrator",
+      "worker_skill": null,
+      "reference": "03_重复文件处理与旧知识更新.md",
+      "inputs": [
+        "topics",
+        "old_knowledge"
+      ],
+      "outputs": [
+        "actions",
+        "change_plan",
+        "unresolved"
+      ],
+      "write_scope": "task_metadata"
+    },
+    {
+      "id": "organize",
+      "owner": "knowledge-processor",
+      "worker_skill": "knowledge-processor",
+      "reference": "04_知识整理与成品交付.md",
+      "inputs": [
+        "complete_material",
+        "actions",
+        "change_plan"
+      ],
+      "outputs": [
+        "knowledge",
+        "entry_00",
+        "dependencies",
+        "actual_changes"
+      ],
+      "write_scope": "authorized_plan"
+    },
+    {
+      "id": "verify",
+      "owner": "knowledge-orchestrator",
+      "worker_skill": null,
+      "inputs": [
+        "actual_changes",
+        "coverage",
+        "entry_00",
+        "events"
+      ],
+      "outputs": [
+        "verified_delivery",
+        "remaining"
+      ],
+      "write_scope": "task_metadata"
+    }
+  ],
+  "extensions": [],
+  "layout_version": "1.1",
+  "library_directories": [
+    "附件",
+    "管理",
+    "来源",
+    "依赖",
+    "正文"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识库主控"
+  short_description: "统一调度知识加工、判断旧库更新、跟踪进度与日志，并按任务接入后续扩展功能"
+  default_prompt: "使用 $knowledge-orchestrator 处理这批资料，先确定目标库，再按需要转换、拆解、判断更新并整理交付。"
